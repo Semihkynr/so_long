@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:46:57 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/06 00:05:28 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/08 16:58:30 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef struct s_game
     int    step;
     int    high;
     int    width;
-    int    usecount;
+    int    px;
+    int    py;
 }              t_game;
 
 int	ft_strlen(const char *str);
@@ -35,6 +36,8 @@ int newlinectl(char *str);
 int truemapfloor(char *str,t_game *game);
 int mapargctl(t_game *game);
 int	check_map_name(char *str);
+int map_wallctl(t_game *game,char **str, int i , int j);
+char **copymap(t_game *game , char *map);
 
 
 #endif

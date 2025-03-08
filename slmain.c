@@ -6,40 +6,11 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:59:28 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/06 00:30:14 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/08 17:07:45 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int map_wallctl(t_game *game,char *str, int i)
-// {
-//     int a;
-    
-//     while (str[i])
-//     {
-//         while((game->usecount == 0 || game->usecount == max çağırma sayısı ) && str[i])
-//         {
-//             if(str[i] == '1' || str[i] == '\0')
-//                 i++;
-//             else
-//             {
-//                 printf("--%d\n",i);
-//                 game->usecount++;
-//                 return(write(1,"bura\n",6), 0);
-//             }
-//         }
-//         while(str[i])
-//         {
-//             a = ft_strlen(str);
-//             if(!(str[0] == '1') || str[a] == '1')
-//                return(write(1,"Error\n",6), 0);
-//             else 
-//                 i++;
-//         }
-//     }
-//     return(1);
-// }
 
 int check_map(t_game *game, char **av, int j)
 {
@@ -56,18 +27,17 @@ int check_map(t_game *game, char **av, int j)
     {
         if(!(truemapfloor(str,game)))
             return(close(fd),free(str),0);
-        j = game->usecount;
+        j = game->width;
         if(!(newlinectl(str)))
             j++;
-        game->width = j - 1;
-        free(str);
+        game->width = j -1;
         game->high++;
+        free(str);
         str = get_next_line(fd);
         if(game->width != a)
             return(write(1,"Error\n",6),close(fd),free(str),0);
-        free(str);
     }
-    return(close(fd),1);
+    return(close(fd),free(str),1);
 }
 
 void newgame(t_game *game)
@@ -78,8 +48,10 @@ void newgame(t_game *game)
     game->step = 0;
     game->high = 0;
     game->width = 0;
-    game->usecount = 0;
+    game->px = 0;
+    game->py = 0;
 }
+
 int main(int ac, char **av)
 {
     t_game *game;
@@ -92,7 +64,15 @@ int main(int ac, char **av)
     newgame(game);
     if(!check_map(game,av,0))
         return(free(game),0);
+    if(!mapargctl(game))
+        return(write(1,"Error\n", 6), 0);
     if(!check_map_name(av[1]))
         return(free(game),0);
+    if(!map_wallctl(game ,copymap(game,av[1]),0,0))
+        return(free(game),write(1,"Error\n",6),0);
+    printf("xxxxxx%d\n",game->px);
+    printf("yyyyyy%d\n",game->py);
+    // y nin x y si oluşturuldu ,indexli yani 0 dan başlıyo ,flootfill yazılcak, sonda new line varsa sıkıntı çıkması lazım çıkmıyo o kontrol edilcek
+    // float fill + new line kontrolü + mlx komutları + leakler kaldı:)
     return (free(game),0);
 }

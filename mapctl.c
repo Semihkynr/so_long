@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:30:49 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/06 00:19:39 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/08 17:03:26 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ int newlinectl(char *str)
 
 int mapargctl(t_game *game)
 {
+    printf("%d\n",game->coincount);
+    printf("%d\n",game->exitcount);
+    printf("%d\n",game->playercount);
     if(!(game->coincount > 0))
-        return(write(1,"Error\n", 6), 0);
+        return(0);
     if(game->exitcount != 1)
-        return(write(1,"Error\n", 6), 0);
+        return(0);
     if(game->playercount != 1)   
-        return(write(1,"Error\n", 6), 0);
+        return(0);
     return(1);
 }
 
@@ -51,9 +54,13 @@ int truemapfloor(char *str,t_game *game)
         if(str[j] == 'C')
             game->coincount++;
         if(str[j] == 'P')
+        {
+            game->py = game->high;
+            game->px = j;
             game->playercount++;
+        }
         j++;
-        game->usecount = j;
+        game->width = j;
     }
     return(1);
 }
