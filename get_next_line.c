@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:41:01 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/06 00:45:25 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:33:25 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static char	*ft_after(char *repo)
 	i = 0;
 	while (repo[i] && repo[i] != '\n')
 		i++;
-	if (!repo[i])
+	if (!repo[i] || !repo)
 	{
 		free(repo);
 		return (NULL);
 	}
 	new_repo = (char *)malloc(sizeof(char) * (ft_strlen(repo) - i + 1));
-	if (!repo)
+	if (!new_repo)
 		return (NULL);
 	i++;
 	j = 0;

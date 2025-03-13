@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:41:06 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/05 20:09:13 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/09 18:04:08 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_strlen(const char *s)
 	int		i;
 
 	i = 0;
+	if(!s)
+		return(0);
 	while (s[i])
 	{
 		i++;

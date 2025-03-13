@@ -6,12 +6,21 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:30:49 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/08 17:03:26 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:49:56 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	clear_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+}
 int newlinectl(char *str)
 {
     int i;
@@ -26,37 +35,40 @@ int newlinectl(char *str)
     return (0);
 }
 
-int mapargctl(t_game *game)
+int mapargctl(t_game *game , char **av)
 {
-    printf("%d\n",game->coincount);
-    printf("%d\n",game->exitcount);
-    printf("%d\n",game->playercount);
+    char **map;
+    
     if(!(game->coincount > 0))
         return(0);
     if(game->exitcount != 1)
         return(0);
     if(game->playercount != 1)   
         return(0);
-    return(1);
+    map = copymap(game,av[1]);
+    if(newlinectl(map[game->high - 1]))
+        return(clear_array(map),0);
+    return(clear_array(map),1);
 }
 
 int truemapfloor(char *str,t_game *game)
 {
     int j;
     j = 0;
+
     while(str[j])
     {
         if(str[j] != 'E' && str[j] != 'C' && str[j] != 'P' 
         && str[j] != '\0' && str[j] != '\n' && str[j] != '1' && str[j] != '0')
-            return(write(1,"Error\n", 6), 0);
+            return(0);
         if(str[j] == 'E')
             game->exitcount++;
         if(str[j] == 'C')
             game->coincount++;
         if(str[j] == 'P')
         {
-            game->py = game->high;
-            game->px = j;
+            game->map->py= game->high + 1;
+            game->map->px = j + 1;
             game->playercount++;
         }
         j++;
@@ -70,7 +82,7 @@ int	check_map_name(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	if (len >= 4)
+	if (len > 4)
 	{
 		if (str[len - 1] == 'r' && str[len - 2] == 'e'
 			&& str[len - 3] == 'b' && str[len - 4] == '.')
@@ -78,5 +90,5 @@ int	check_map_name(char *str)
 		else
 			return(write(1,"Error\n",6), 0);
 	}
-    return(write(1,"1",1) ,0);
+	return(write(1,"Error\n",6), 0);
 }
