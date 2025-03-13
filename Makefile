@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = slmain.c mapctl.c checkmapctl.c \
+SRCS = slmain.c mapctl.c checkmapctl.c helptoerror.c imgctl.c mlx_utils.c \
 	get_next_line.c get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
