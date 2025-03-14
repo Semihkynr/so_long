@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   imgctl.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 17:21:46 by skaynar           #+#    #+#             */
+/*   Updated: 2025/03/14 17:21:49 by skaynar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	xpmopenctl(char *path_xpm)
@@ -58,7 +70,7 @@ void	ft_place(t_game *game)
 	}
 }
 
-void	image_paths(t_game *game)
+void	image_put(t_game *game)
 {
 	int	w;
 	int	h;

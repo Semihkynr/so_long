@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:59:28 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/13 17:43:05 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/14 17:22:40 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	allcheck(char **av, t_game *game)
 	return (1);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -115,7 +114,7 @@ int	main(int ac, char **av)
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->width * 64, game->high
 			* 64, "so_long");
-	image_paths(game);
+	image_put(game);
 	mlx_key_hook(game->mlx_window, key_hook, game);
 	mlx_hook(game->mlx_window, 17, 0L, finish_game, game);
 	mlx_loop(game->mlx);

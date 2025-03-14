@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:46:57 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/13 17:46:37 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/14 17:17:20 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_game
 void			where_player(t_game *game);
 int				finish_game(t_game *game);
 int				key_hook(int keycode, t_game *game);
-void			image_paths(t_game *game);
+void			image_put(t_game *game);
 int				xpmctl(void);
 void			ft_place(t_game *game);
 void			freegnl(int fd);
