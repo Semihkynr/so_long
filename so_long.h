@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:46:57 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/14 17:17:20 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/15 16:28:19 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "get_next_line.h"
 # include "mlx/mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
