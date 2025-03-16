@@ -6,7 +6,7 @@
 /*   By: skaynar <skaynar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:59:28 by skaynar           #+#    #+#             */
-/*   Updated: 2025/03/15 16:28:10 by skaynar          ###   ########.fr       */
+/*   Updated: 2025/03/15 16:52:48 by skaynar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	allcheck(char **av, t_game *game)
 	if (!check_map(game, av, 0, 0))
 		return (write(1, "Error\n", 6), 0);
 	if (!mapargctl(game, av))
-		return (write(1, "Error\n", 6),0);
+		return (write(1, "Error\n", 6), 0);
 	game->map->realmap = copymap(game, av[1]);
 	if (!map_wallctl(game, game->map->realmap, 0, 0))
 		return (clear_array(game->map->realmap), write(1,
@@ -110,7 +110,7 @@ int	main(int ac, char **av)
 	if (!game || !game->map)
 		return (write(1, "Error\nMalloc Error!", 19), freemalloc(game), 0);
 	if (!allcheck(av, game))
-		return (freemalloc(game) ,0);
+		return (freemalloc(game), 0);
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->width * 64, game->high
 			* 64, "so_long");
